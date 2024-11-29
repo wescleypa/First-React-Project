@@ -1,0 +1,289 @@
+.menu {
+    display: flex;
+    align-items: flex-start; /* Alinha os itens ao topo */
+    gap: 15px;               /* Espaço fixo entre os itens */
+    margin-bottom: 30px;     /* Distância do rodapé */
+    
+    position: fixed;         /* Torna o menu fixo */
+    bottom: 0;                /* Alinha o menu verticalmente no meio da tela */
+    left: 50%;               /* Coloca o menu no meio horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza o menu vertical e horizontalmente */
+  
+  
+  .menu-item {
+    display: flex;
+    align-items: center;          /* Alinha o ícone verticalmente */
+    justify-content: center;      /* Centraliza o ícone horizontalmente */
+    position: relative;
+    width: 60px;                  /* Largura inicial */
+    height: 60px;
+    background-color: white;
+    border-radius: 30px;          /* Forma arredondada */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    overflow: hidden;             /* Esconde o texto quando não está no hover */
+    flex-shrink: 0;               /* Impede que os itens encolham */
+  }
+
+  .menu-item.active {
+    width: 200px;                 /* Expande a largura ao passar o mouse */
+    background-color: rgba(4, 92, 192, 0.5);
+    color: white;
+
+    .menu-text {
+      opacity: 1;                   /* Torna o texto visível no hover */
+    }
+
+    i {
+      transform: translateX(-75px); /* Move o ícone para a esquerda */
+      transition: transform 0.6s ease;
+    }
+  }
+
+  .menu-item:hover {
+    width: 200px;                 /* Expande a largura ao passar o mouse */
+    background-color: rgba(4, 92, 192, 0.5);
+    color: white;
+  }
+  
+  /* Ícone */
+  .menu-item i {
+    font-size: 24px;
+    pointer-events: none;         /* Impede interação no ícone */
+    transition: transform 0.6s ease;
+  }
+  
+  /* Texto oculto */
+  .menu-text {
+    position: absolute;           /* Texto com posição absoluta */
+    left: 70px;                   /* Posiciona o texto ao lado do ícone */
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;          /* Impede quebra de linha */
+    opacity: 0;                   /* Texto invisível inicialmente */
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Exibir texto no hover */
+  .menu-item:hover .menu-text {
+    opacity: 1;                   /* Torna o texto visível no hover */
+  }
+  
+  .menu-item:hover i {
+    transform: translateX(-75px); /* Move o ícone para a esquerda */
+    transition: transform 0.6s ease;
+  }
+}
+
+.menu-perfil {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* Alinha o ícone verticalmente */
+    justify-content: center;      /* Centraliza o ícone horizontalmente */
+    position: relative;
+    width: 60px;                  /* Largura inicial */
+    height: 60px;
+    background-color: white;
+    border-radius: 30px;          /* Forma arredondada */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+    overflow: hidden;             /* Esconde o texto quando não está no hover */
+    flex-shrink: 0;               /* Impede que os itens encolham */
+  }
+
+  .menu-item:hover {
+    height: 170px;                 /* Expande a largura ao passar o mouse */
+    background-color: rgba(4, 92, 192, 0.5);
+    color: white;
+  }
+  
+  /* Ícone */
+  .menu-item img {
+    font-size: 24px;
+    pointer-events: none;         /* Impede interação no ícone */
+    transition: transform 0.6s ease;
+    position: absolute;
+  }
+  
+  /* Texto oculto */
+  .menu-text {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;          /* Impede quebra de linha */
+    opacity: 0;                   /* Texto invisível inicialmente */
+    transition: opacity 0.3s ease;
+
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Esconde qualquer conteúdo fora da área do círculo */
+  }
+  
+
+  /* Define o tamanho e a borda redonda da imagem */
+  img {
+    width: 40px;
+    height: 40px; /* Mantenha a altura igual à largura para manter o formato redondo */
+    border-radius: 50%; /* Tornar a imagem redonda */
+    transition: opacity 0.3s ease; /* Suaviza o efeito de hover */
+  }
+
+  .menu-item:hover img {
+    transform: translateY(-60px);
+    transition: transform 0.6s ease;
+  }
+
+  .menu-item:hover .menu-text {
+    opacity: 1;
+    transform: translateY(30px); /* Move o ícone para a esquerda */
+
+    i {
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, color 0.1s ease;
+    }
+    i:hover {
+      transform: scale(1.2);  /* Aumenta o ícone no hover */
+      color: rgba(4, 92, 192, 0.5);
+    }
+  }
+
+}
+
+
+/* Card de notificação */
+.notification-card {
+  position: fixed;
+  bottom: 50vh;
+  right: -100%; /* Começa fora da tela */
+  width: 300px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  transition: right 0.5s ease; /* Aplica a transição ao deslocar da direita */
+  z-index: 10; /* Garante que o card está acima do menu */
+}
+
+/* Quando o card é visível */
+.notification-card.show {
+  right: 0; /* Move o card para a posição visível */
+}
+
+/* Menu de perfil */
+.menu-perfil .menu-item {
+  position: relative;
+  z-index: 20;
+}
+
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  .notification-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  span i {
+    color: red;
+  }
+
+  span:hover {
+    transform: scale(1.2);  /* Aumenta o ícone no hover */
+    cursor: pointer;
+    color: rgb(129, 0, 0);
+  }
+}
+
+.notification {
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  cursor: pointer;
+  
+ /* Quando a notificação estiver oculta, aplica a animação */
+.notification-item.hidden {
+  transform: translateX(100%);  /* Move para a esquerda */
+  opacity: 0;                    /* Torna invisível */
+  transition: transform 0.5s ease, opacity 0.5s ease;  /* Transição suave para ambas as propriedades */
+}
+
+
+  .notification-item {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.5s ease;
+  
+    .notification-close {
+      position: absolute;
+      right: 30px;
+      cursor: pointer;
+    }
+    .notification-close:hover {
+      transform: scale(1.2);  /* Aumenta o ícone no hover */
+      cursor: pointer;
+      color: rgb(129, 0, 0);
+    }
+
+    .notification-media {
+      position: relative;
+
+      .notification-user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        -o-object-fit: cover;
+           object-fit: cover;
+      }
+
+      .notification-reaction {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        color: white;
+        background-image: linear-gradient(45deg, #0070e1, #14abfe);
+        font-size: 14px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    .notification-content {
+      width: calc(100% - 60px);
+      padding-left: 20px;
+      line-height: 1.2;
+
+      .notification-text {
+        margin-bottom: 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(51, 51, 51)
+      }
+
+      .notification-timer {
+        color: #1876f2;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+}
